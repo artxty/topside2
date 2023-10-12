@@ -28,8 +28,9 @@ function processFile(arg: string): void {
             console.error(err);
         } else {
             const dest = path.resolve(path.format(filePath));
+            /* Node v20: */
             fs.writeFileSync(dest, compiled.code + "\n//# sourceMappingURL=" + filePath.name + '.ts.map');
-            fs.writeFileSync(dest + '.map', compiled.map);
+            fs.writeFileSync(dest + '.map', compiled.map.toString());
         }
     });
 
